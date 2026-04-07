@@ -1,10 +1,31 @@
 console.log("Script started")
 
+// var to track current number
+let currentNum = 1;
+let level = 1;
+
 function start() {
+    console.log("Click");
+    startLevel1();
+}
+
+function startLevel1() {
+     currentNum = 1;
+     level = 1;
     console.log("Click");
     setTimeout(createCircle, 1000, 1);
     setTimeout(createCircle, 2000, 2);
     setTimeout(createCircle, 3000, 3);
+}
+
+function startLevel2() {
+    currentNum = 1;
+    level = 2;
+    setTimeout(createCircle, 1000, 1);
+    setTimeout(createCircle, 2000, 2);
+    setTimeout(createCircle, 3000, 3);
+    setTimeout(createCircle, 4000, 4);
+    setTimeout(createCircle, 5000, 5);
 }
 
 function createCircle(num) {
@@ -47,5 +68,15 @@ function getRandomY() {
 // checks for right choice and removes it
 function checkForRemove(event) {
     let circle = event.target;
-    console.log(circle.innerText)
+    console.log(circle.innerText);
+    if (circle.innerText == currentNum) {
+        circle.remove();
+        currentNum++;
+        if (currentNum == 4 && level == 1) {
+            startLevel2();
+        }
+        else if (currentNum == 6 && level == 2) {
+            startLevel3();
+        }
+    }
 }
